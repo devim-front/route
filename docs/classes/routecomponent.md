@@ -1,4 +1,4 @@
-[@devim-front/react-route](../README.md) › [RouteComponent](routecomponent.md)
+[@devim-front/route](../README.md) › [RouteComponent](routecomponent.md)
 
 # Class: RouteComponent ‹**P, E**›
 

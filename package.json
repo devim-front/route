@@ -1,5 +1,5 @@
 {
-  "name": "@devim-front/react-route",
+  "name": "@devim-front/route",
   "version": "1.0.3",
   "description": "Предоставляет инструменты для роутинга в приложениях React+MOBX",
   "main": "/build/index.js",
@@ -51,12 +51,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devim-front/react-route.git"
+    "url": "git+https://github.com/devim-front/route.git"
   },
   "bugs": {
-    "url": "https://github.com/devim-front/react-route/issues"
+    "url": "https://github.com/devim-front/route/issues"
   },
-  "homepage": "https://github.com/devim-front/react-route#readme",
+  "homepage": "https://github.com/devim-front/route#readme",
   "dependencies": {
     "@devim-front/error": "^1.1.4",
     "@devim-front/store": "^1.0.2",

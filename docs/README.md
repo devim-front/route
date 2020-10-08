@@ -1,6 +1,6 @@
-[@devim-front/react-route](README.md)
+[@devim-front/route](README.md)
 
-# @devim-front/react-route
+# @devim-front/route
 
 ## Index
 

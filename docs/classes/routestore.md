@@ -1,4 +1,4 @@
-[@devim-front/react-route](../README.md) › [RouteStore](routestore.md)
+[@devim-front/route](../README.md) › [RouteStore](routestore.md)
 
 # Class: RouteStore ‹**P, E**›
 

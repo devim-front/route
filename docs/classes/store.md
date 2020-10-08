@@ -1,4 +1,4 @@
-[@devim-front/react-route](../README.md) › [Store](store.md)
+[@devim-front/route](../README.md) › [Store](store.md)
 
 # Class: Store ‹**E**›
 

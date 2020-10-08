@@ -1,4 +1,4 @@
-[@devim-front/react-route](../README.md) › [RouteRedirect](routeredirect.md)
+[@devim-front/route](../README.md) › [RouteRedirect](routeredirect.md)
 
 # Class: RouteRedirect ‹**P, E**›
 
