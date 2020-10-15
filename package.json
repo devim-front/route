@@ -1,6 +1,6 @@
 {
   "name": "@devim-front/route",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Предоставляет инструменты для роутинга в приложениях React+MOBX",
   "main": "/index.js",
   "publishConfig": {
