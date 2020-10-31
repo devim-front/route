@@ -1,4 +1,4 @@
-import { LazyStore } from '@devim-front/store';
+import { LazyStore, reactive } from '@devim-front/store';
 import { createElement, FC } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { action, observable, computed } from 'mobx';
@@ -16,6 +16,7 @@ type Location = RouteComponentProps['location'];
 /**
  * Хранилище состояния маршрутизации.
  */
+@reactive
 export class Store extends LazyStore {
   /**
    * Менеджер истории маршрутизации.

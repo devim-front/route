@@ -53,8 +53,8 @@ export class RouteComponent<P extends RouteParams = void> extends RoutePath<P> {
   public route() {
     return createElement(Route, {
       component: this.requiredComponent,
+      exact: this.requiredExact,
       path: this.requiredPath,
-      exact: this.exact,
     });
   }
 }

@@ -1,3 +1,4 @@
+import { reactive } from '@devim-front/store';
 import { computed } from 'mobx';
 
 import { RouteRedirect } from './RouteRedirect';
@@ -8,6 +9,7 @@ import { RouteParams } from './RouteParams';
  * Родительский класс маршрута, который содержит наблюдаемые свойства,
  * основанные на текущем адресе страницы.
  */
+@reactive
 export class RouteStore<P extends RouteParams = void> extends RouteRedirect<P> {
   /**
    * True, если текущий адрес страницы соответствует данному маршруту.

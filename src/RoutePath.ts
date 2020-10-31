@@ -39,7 +39,7 @@ export class RoutePath<P extends RouteParams = void> extends LazyStore {
    * то и все её дочерние страницы также будут соответствовать этой маске.
    * Флаг exact отключает это поведение.
    */
-  public exact: boolean = false;
+  public exact: boolean;
 
   /**
    * Содержит значение свойства path. Если path не определено в
@@ -57,6 +57,16 @@ export class RoutePath<P extends RouteParams = void> extends LazyStore {
     }
 
     return this.path;
+  }
+
+  /**
+   * Содержит значение свойства exact. Если exact не определено в классе
+   * наследнике, возвращается значение по умолчанию (false). Если вам
+   * нужно получить гарантировано существущее значение флага, следует
+   * воспользоваться этим свойством, а не использовать exact напрямую.
+   */
+  protected get requiredExact() {
+    return this.exact || false;
   }
 
   /**
@@ -127,7 +137,7 @@ export class RoutePath<P extends RouteParams = void> extends LazyStore {
 
     const [matchedHref, ...values] = match;
 
-    if (this.exact) {
+    if (this.requiredExact) {
       return matchedHref === href ? values : undefined;
     }
 

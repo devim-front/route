@@ -34,8 +34,8 @@ export class RouteRedirect<P extends RouteParams = void> extends RouteComponent<
     let value = args.shift();
 
     if (value instanceof RouteRedirect) {
+      exact = value.requiredExact;
       from = value.requiredPath;
-      exact = value.exact;
 
       value = args.shift();
     }
