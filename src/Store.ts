@@ -11,7 +11,7 @@ type History = RouteComponentProps['history'];
 /**
  * Текущее местоположение роутера.
  */
-type Location = RouteComponentProps['location'];
+type Location = RouteComponentProps<any, any, any>['location'];
 
 /**
  * Хранилище состояния маршрутизации.
@@ -24,16 +24,49 @@ export class Store extends LazyStore {
   private history: History;
 
   /**
-   * Компонент пути из текущего адреса страницы.
+   * Текущий адрес страницы.
    */
   @observable
-  public pathname: string;
+  private location: Location;
+
+  /**
+   * Компонент пути из текущего адреса страницы.
+   */
+  @computed
+  public get pathname() {
+    Boolean(this.location);
+
+    const { location } = this.history;
+    const { pathname } = location;
+
+    return pathname;
+  }
 
   /**
    * Строка запроса из текущего адреса страницы.
    */
-  @observable
-  public search: string;
+  @computed
+  public get search() {
+    Boolean(this.location);
+
+    const { location } = this.history;
+    const { search } = location;
+
+    return search;
+  }
+
+  /**
+   * Якорь запроса из текущего адреса страницы.
+   */
+  @computed
+  public get hash() {
+    Boolean(this.location);
+
+    const { location } = this.history;
+    const { hash } = location;
+
+    return hash;
+  }
 
   /**
    * Строка запроса из текущего адреса страницы, представленная в виде
@@ -95,10 +128,7 @@ export class Store extends LazyStore {
    */
   @action
   private setLocation = (location: Location) => {
-    const { pathname, search } = location;
-
-    this.pathname = pathname;
-    this.search = search;
+    this.location = location;
   };
 
   /**
