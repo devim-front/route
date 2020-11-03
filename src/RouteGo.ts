@@ -49,9 +49,9 @@ export class RouteGo<P extends RouteParams = void> extends RouteStore<P> {
     const href = this.href(values);
 
     if (push) {
-      Store.get().push(href);
+      Store.get(this).push(href);
     } else {
-      Store.get().replace(href);
+      Store.get(this).replace(href);
     }
   }
 }
