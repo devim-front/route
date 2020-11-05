@@ -14,6 +14,13 @@ type History = RouteComponentProps['history'];
 type Location = RouteComponentProps<any, any, any>['location'];
 
 /**
+ * Сообщение об ошибке, которая возникает, когда пользователь пытается
+ * обратиться к методам хранилища до его синхронизации с историей.
+ */
+const ERROR_MESSAGE =
+  'The store is not syncronized with React Router. Please use the sync() method';
+
+/**
  * Хранилище состояния маршрутизации.
  */
 @reactive
@@ -37,7 +44,7 @@ export class Store extends LazyStore {
     Boolean(this.location);
 
     if (this.history == null) {
-      return undefined;
+      throw new Error(ERROR_MESSAGE);
     }
 
     const { location } = this.history;
@@ -54,7 +61,7 @@ export class Store extends LazyStore {
     Boolean(this.location);
 
     if (this.history == null) {
-      return undefined;
+      throw new Error(ERROR_MESSAGE);
     }
 
     const { location } = this.history;
@@ -71,7 +78,7 @@ export class Store extends LazyStore {
     Boolean(this.location);
 
     if (this.history == null) {
-      return undefined;
+      throw new Error(ERROR_MESSAGE);
     }
 
     const { location } = this.history;
@@ -86,10 +93,6 @@ export class Store extends LazyStore {
    */
   @computed
   public get searchParams() {
-    if (this.search == null) {
-      return undefined;
-    }
-
     const rawSearch = this.search.replace(/^\?/, '');
 
     const values = rawSearch.split('&');
