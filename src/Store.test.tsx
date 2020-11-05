@@ -1,14 +1,17 @@
 import React, { FC, ComponentProps } from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { autorun } from 'mobx';
 import { assert } from 'chai';
 
+import { Pool } from '@devim-front/service';
 import { Store } from './Store';
 
 type Context = Exclude<ComponentProps<typeof StaticRouter>['context'], void>;
 
 describe('RouterStore', () => {
-  describe('sync', () => {
+  describe('RouterStore.sync', () => {
     it('should works', () => {
       renderToString(
         <StaticRouter location="/foo">{Store.get().sync()}</StaticRouter>
@@ -19,7 +22,7 @@ describe('RouterStore', () => {
     });
   });
 
-  describe('pathname', () => {
+  describe('RouterStore.pathname', () => {
     it('should works if a current pathname is not empty', () => {
       renderToString(
         <StaticRouter location="/foo">{Store.get().sync()}</StaticRouter>
@@ -34,9 +37,36 @@ describe('RouterStore', () => {
       const { pathname } = Store.get();
       assert.equal(pathname, '/');
     });
+
+    it('should triggers a reactions when it changes', (done) => {
+      const pool = new Pool();
+      const store = Store.get(pool);
+
+      const history = createMemoryHistory();
+      store.setHistory(history);
+
+      let count: number = 0;
+
+      const dispose = autorun(() => {
+        const { pathname } = store;
+
+        count += 1;
+
+        if (count === 1) {
+          return;
+        }
+
+        assert.equal(pathname, '/foo');
+
+        dispose();
+        done();
+      });
+
+      history.push('/foo');
+    });
   });
 
-  describe('search', () => {
+  describe('RouterStore.search', () => {
     it('should works if a current search is not empty', () => {
       renderToString(
         <StaticRouter location="/foo?bar">{Store.get().sync()}</StaticRouter>
@@ -52,9 +82,36 @@ describe('RouterStore', () => {
       const { search } = Store.get();
       assert.equal(search, '');
     });
+
+    it('should triggers a reactions when it changes', (done) => {
+      const pool = new Pool();
+      const store = Store.get(pool);
+
+      const history = createMemoryHistory();
+      store.setHistory(history);
+
+      let count: number = 0;
+
+      const dispose = autorun(() => {
+        const { search } = store;
+
+        count += 1;
+
+        if (count === 1) {
+          return;
+        }
+
+        assert.equal(search, '?foo');
+
+        dispose();
+        done();
+      });
+
+      history.push('?foo');
+    });
   });
 
-  describe('searchParams', () => {
+  describe('RouterStore.searchParams', () => {
     it('should works if a search part of href is empty', () => {
       renderToString(
         <StaticRouter location="/foo">{Store.get().sync()}</StaticRouter>
@@ -89,7 +146,7 @@ describe('RouterStore', () => {
     });
   });
 
-  describe('push', () => {
+  describe('RouterStore.push', () => {
     it('should works', () => {
       const Component: FC = () => {
         Store.get().push('/bar');
@@ -112,7 +169,7 @@ describe('RouterStore', () => {
     });
   });
 
-  describe('replace', () => {
+  describe('RouterStore.replace', () => {
     it('should works', () => {
       const Component: FC = () => {
         Store.get().replace('/bar');

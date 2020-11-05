@@ -17,7 +17,7 @@ export class RouteStore<P extends RouteParams = void> extends RouteRedirect<P> {
   @computed
   public get isActive() {
     const { pathname } = Store.get(this);
-    return this.test(pathname);
+    return pathname == null ? undefined : this.test(pathname);
   }
 
   /**
@@ -28,6 +28,6 @@ export class RouteStore<P extends RouteParams = void> extends RouteRedirect<P> {
   @computed
   public get params() {
     const { pathname } = Store.get(this);
-    return this.exec(pathname);
+    return pathname == null ? undefined : this.exec(pathname);
   }
 }

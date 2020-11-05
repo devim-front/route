@@ -27,7 +27,7 @@ export class Store extends LazyStore {
    * Текущий адрес страницы.
    */
   @observable
-  private location: Location;
+  private location: Location | undefined = undefined;
 
   /**
    * Компонент пути из текущего адреса страницы.
@@ -35,6 +35,10 @@ export class Store extends LazyStore {
   @computed
   public get pathname() {
     Boolean(this.location);
+
+    if (this.history == null) {
+      return undefined;
+    }
 
     const { location } = this.history;
     const { pathname } = location;
@@ -49,6 +53,10 @@ export class Store extends LazyStore {
   public get search() {
     Boolean(this.location);
 
+    if (this.history == null) {
+      return undefined;
+    }
+
     const { location } = this.history;
     const { search } = location;
 
@@ -62,6 +70,10 @@ export class Store extends LazyStore {
   public get hash() {
     Boolean(this.location);
 
+    if (this.history == null) {
+      return undefined;
+    }
+
     const { location } = this.history;
     const { hash } = location;
 
@@ -74,6 +86,10 @@ export class Store extends LazyStore {
    */
   @computed
   public get searchParams() {
+    if (this.search == null) {
+      return undefined;
+    }
+
     const rawSearch = this.search.replace(/^\?/, '');
 
     const values = rawSearch.split('&');
@@ -106,7 +122,7 @@ export class Store extends LazyStore {
    * @internal
    * @param history История маршрутизатора.
    */
-  private setHistory = (history: History) => {
+  public setHistory = (history: History) => {
     if (this.history === history) {
       return;
     }
