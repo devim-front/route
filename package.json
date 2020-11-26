@@ -42,7 +42,9 @@
     "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
     "ts-node": "^8.10.1",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.3",
+    "mobx": "^6.0.x",
+    "react-router-dom": "^5.2.0"
   },
   "repository": {
     "type": "git",
@@ -58,9 +60,5 @@
     "@types/react-router-dom": "^5.1.6",
     "path-to-regexp": "^6.2.0",
     "react": "^16.13.1"
-  },
-  "peerDependencies": {
-    "mobx": "^6.0.x",
-    "react-router-dom": "^5.2.0"
   }
 }
