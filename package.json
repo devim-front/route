@@ -56,9 +56,11 @@
     "@devim-front/error": "^1.1.4",
     "@devim-front/store": "^2.0.1",
     "@types/react-router-dom": "^5.1.6",
-    "mobx": "^6.0.1",
     "path-to-regexp": "^6.2.0",
-    "react": "^16.13.1",
+    "react": "^16.13.1"
+  },
+  "peerDependencies": {
+    "mobx": "^6.0.x",
     "react-router-dom": "^5.2.0"
   }
 }
